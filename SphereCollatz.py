@@ -42,13 +42,13 @@ def collatz_eval (i, j) :
             while (temp != 1):
                 if (temp%2) == 0 :
                     temp = temp//2
-                    count = count + 1
                 else:
-                    temp = temp + (temp>>1) + 1
-                    count = count + 2
+                    temp = (3*temp) + 1
+
+                count = count + 1
         if maxCycle < count :
-            maxCycle = count
-       
+           maxCycle = count
+
         i = i+1
         count = 1
     return maxCycle
@@ -84,3 +84,34 @@ def collatz_solve (r, w) :
         i, j = a
         v = collatz_eval(i, j)
         collatz_print(w, i, j, v)
+
+"""
+To run the program
+    % coverage3 run --branch RunCollatz.py < RunCollatz.in
+
+To obtain coverage of the run:
+    % coverage3 report -m
+
+To document the program
+    % pydoc -w Collatz
+"""
+
+# ----
+# main
+# ----
+
+collatz_solve(sys.stdin, sys.stdout)
+
+"""
+% coverage3 run --branch RunCollatz.py < RunCollatz.in > RunCollatz.out
+
+
+
+% coverage3 report -m
+Name          Stmts   Miss Branch BrMiss  Cover   Missing
+---------------------------------------------------------
+Collatz         18      0      6      0   100%
+RunCollatz       5      0      0      0   100%
+---------------------------------------------------------
+TOTAL           23      0      6      0   100%
+"""
