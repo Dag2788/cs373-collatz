@@ -1,0 +1,23 @@
+commit 5c82d1c7a7c671d2aa224eac7b7257303261cda6
+Author: Daniel Garza <dgza88@utexas.edu>
+Date:   Tue Jun 17 21:26:51 2014 -0500
+
+    Sphere accepted lazy cache
+
+commit 4a32cb27f70327ea02e834c34c5e911268bbb9cb
+Author: Daniel Garza <dgza88@utexas.edu>
+Date:   Tue Jun 17 21:09:12 2014 -0500
+
+    Sphere accepted no cache
+
+commit 8369e07c78555120b00c2d9b993da35f6efa7016
+Author: Daniel Garza <dgza88@utexas.edu>
+Date:   Tue Jun 17 18:35:46 2014 -0500
+
+    First optimization
+
+commit f4c3e58b3161cba68ffde528570d32340c16b7cd
+Author: Daniel Garza <dgza88@utexas.edu>
+Date:   Tue Jun 17 16:45:52 2014 -0500
+
+    Simplest Solution
