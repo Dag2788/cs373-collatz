@@ -25,12 +25,15 @@ def collatz_read (r) :
 # ------------
 # collatz_eval
 # ------------
- def collatz_eval (i, j) :
+
+def collatz_eval (i, j) :
     """
     i is the beginning of the range, inclusive
     j is the end       of the range, inclusive
     return the max cycle length in the range [i, j]
     """
+    lazy = [-1]* 1000000
+
     if( i > j):
         i^=j
         j^=i
@@ -42,7 +45,11 @@ def collatz_read (r) :
         i = j//2
 
     while (i <= j):
-        count = 1
+
+        if lazy[i] != -1 :
+            return lazy[i]
+        else:
+            count = 1
         if i == 0 :
             count=0
         else:
@@ -56,10 +63,12 @@ def collatz_read (r) :
                     count = count + 2
         if (maxCycle < count) :
             maxCycle = count
-
+        lazy[i] = count
         i = i+1
 
     return maxCycle
+
+# -------------
 # collatz_print
 # -------------
 
@@ -91,33 +100,5 @@ def collatz_solve (r, w) :
         v = collatz_eval(i, j)
         collatz_print(w, i, j, v)
 
-"""
-To run the program
-    % coverage3 run --branch RunCollatz.py < RunCollatz.in
-
-To obtain coverage of the run:
-    % coverage3 report -m
-
-To document the program
-    % pydoc -w Collatz
-"""
-
-# ----
-# main
-# ----
 
 collatz_solve(sys.stdin, sys.stdout)
-
-"""
-% coverage3 run --branch RunCollatz.py < RunCollatz.in > RunCollatz.out
-
-
-
-% coverage3 report -m
-Name          Stmts   Miss Branch BrMiss  Cover   Missing
----------------------------------------------------------
-Collatz         18      0      6      0   100%
-RunCollatz       5      0      0      0   100%
----------------------------------------------------------
-TOTAL           23      0      6      0   100%
-"""

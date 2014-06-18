@@ -32,6 +32,8 @@ def collatz_eval (i, j) :
     j is the end       of the range, inclusive
     return the max cycle length in the range [i, j]
     """
+    lazy = [-1]* 1000000
+
     if( i > j):
         i^=j
         j^=i
@@ -43,7 +45,11 @@ def collatz_eval (i, j) :
         i = j//2 
     
     while (i <= j):
-        count = 1
+
+        if lazy[i] != -1 :
+            return lazy[i]
+        else:
+            count = 1
         if i == 0 :
             count=0
         else:
@@ -57,7 +63,7 @@ def collatz_eval (i, j) :
                     count = count + 2
         if (maxCycle < count) :
             maxCycle = count
-       
+        lazy[i] = count
         i = i+1
         
     return maxCycle
