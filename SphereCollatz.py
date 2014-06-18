@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import sys
 # ---------------------------
 # projects/collatz/Collatz.py
 # Copyright (C) 2014
@@ -25,16 +25,24 @@ def collatz_read (r) :
 # ------------
 # collatz_eval
 # ------------
-
-def collatz_eval (i, j) :
+ def collatz_eval (i, j) :
     """
     i is the beginning of the range, inclusive
     j is the end       of the range, inclusive
     return the max cycle length in the range [i, j]
     """
-    maxCycle = 0
-    count = 1
+    if( i > j):
+        i^=j
+        j^=i
+        i^=j
+
+    maxCycle = 1
+
+    if( i < j//2):
+        i = j//2
+
     while (i <= j):
+        count = 1
         if i == 0 :
             count=0
         else:
@@ -42,18 +50,16 @@ def collatz_eval (i, j) :
             while (temp != 1):
                 if (temp%2) == 0 :
                     temp = temp//2
+                    count = count + 1
                 else:
-                    temp = (3*temp) + 1
-
-                count = count + 1
-        if maxCycle < count :
-           maxCycle = count
+                    temp = temp + (temp>>1) + 1
+                    count = count + 2
+        if (maxCycle < count) :
+            maxCycle = count
 
         i = i+1
-        count = 1
-    return maxCycle
 
-# -------------
+    return maxCycle
 # collatz_print
 # -------------
 

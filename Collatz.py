@@ -32,9 +32,18 @@ def collatz_eval (i, j) :
     j is the end       of the range, inclusive
     return the max cycle length in the range [i, j]
     """
-    maxCycle = 0
-    count = 1
+    if( i > j):
+        i^=j
+        j^=i
+        i^=j 
+    
+    maxCycle = 1
+    
+    if( i < j//2):
+        i = j//2 
+    
     while (i <= j):
+        count = 1
         if i == 0 :
             count=0
         else:
@@ -46,11 +55,11 @@ def collatz_eval (i, j) :
                 else:
                     temp = temp + (temp>>1) + 1
                     count = count + 2
-        if maxCycle < count :
+        if (maxCycle < count) :
             maxCycle = count
        
         i = i+1
-        count = 1
+        
     return maxCycle
 
 # -------------
