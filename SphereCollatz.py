@@ -25,7 +25,6 @@ def collatz_read (r) :
 # ------------
 # collatz_eval
 # ------------
-
 def collatz_eval (i, j) :
     """
     i is the beginning of the range, inclusive
@@ -50,17 +49,17 @@ def collatz_eval (i, j) :
             return lazy[i]
         else:
             count = 1
-        if i == 0 :
-            count=0
-        else:
-            temp = i
-            while (temp != 1):
-                if (temp%2) == 0 :
-                    temp = temp//2
-                    count = count + 1
-                else:
-                    temp = temp + (temp>>1) + 1
-                    count = count + 2
+            if i == 0 :
+                count=0
+            else:
+                temp = i
+                while (temp != 1):
+                    if (temp%2) == 0 :
+                        temp = temp//2
+                        count = count + 1
+                    else:
+                        temp = temp + (temp>>1) + 1
+                        count = count + 2
         if (maxCycle < count) :
             maxCycle = count
         lazy[i] = count
